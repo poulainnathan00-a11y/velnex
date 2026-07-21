@@ -34,8 +34,8 @@ export function WhyVelnex() {
         <Stagger className="mt-16 grid gap-6 md:grid-cols-3">
           {PILLARS.map((pillar) => (
             <StaggerItem key={pillar.title}>
-              <article className="glass glow-hover group h-full rounded-2xl p-8 hover:-translate-y-1">
-                <span className="grid size-12 place-items-center rounded-xl border border-line bg-white/[0.03] text-white/70 transition-colors duration-300 group-hover:border-line-strong group-hover:text-white">
+              <article className="card lift group h-full rounded-2xl p-8">
+                <span className="grid size-12 place-items-center rounded-xl border border-line bg-surface text-ink transition-colors duration-300 group-hover:border-line-strong">
                   <pillar.icon className="size-5" />
                 </span>
                 <h3 className="mt-6 text-lg font-semibold tracking-tight">

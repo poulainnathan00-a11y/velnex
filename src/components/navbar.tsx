@@ -36,7 +36,7 @@ export function Navbar() {
         transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
         className={`transition-all duration-500 ${
           scrolled
-            ? "border-b border-line/80 bg-background/80 backdrop-blur-xl"
+            ? "border-b border-line bg-white/80 backdrop-blur-xl"
             : "border-b border-transparent"
         }`}
       >
@@ -49,7 +49,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted transition-colors hover:text-white"
+                className="text-sm text-muted transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>
@@ -60,7 +60,7 @@ export function Navbar() {
             {/* Enveloppe pour masquer sur mobile : `buttonClass` porte déjà
                 `inline-flex`, qui entrerait en conflit avec `hidden`. */}
             <span className="hidden md:block">
-              <Link href="/#produits" className={buttonClass("primary", "md")}>
+              <Link href="/#recrutia" className={buttonClass("primary", "md")}>
                 Nos produits
               </Link>
             </span>
@@ -71,7 +71,7 @@ export function Navbar() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={open}
-              className="grid size-10 place-items-center rounded-xl text-muted transition-colors hover:bg-white/5 hover:text-white md:hidden"
+              className="grid size-10 place-items-center rounded-xl text-muted transition-colors hover:bg-surface-2 hover:text-ink md:hidden"
             >
               {open ? <XIcon className="size-5" /> : <MenuIcon className="size-5" />}
             </button>
@@ -87,7 +87,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
-            className="border-b border-line bg-background/95 backdrop-blur-xl md:hidden"
+            className="border-b border-line bg-white/95 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col gap-1 px-6 pb-6 pt-2">
               {NAV_LINKS.map((link) => (
@@ -95,13 +95,13 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/5 hover:text-white"
+                  className="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-surface-2 hover:text-ink"
                 >
                   {link.label}
                 </Link>
               ))}
               <Link
-                href="/#produits"
+                href="/#recrutia"
                 onClick={() => setOpen(false)}
                 className={`${buttonClass("primary", "lg")} mt-3 w-full`}
               >

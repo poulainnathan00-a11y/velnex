@@ -52,7 +52,7 @@ export function Stats() {
   return (
     <section className="relative py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="glass rounded-3xl px-8 py-12 sm:px-12">
+        <div className="card rounded-3xl px-8 py-14 sm:px-12">
           <Stagger className="grid gap-12 sm:grid-cols-3">
             {STATS.map((stat) => (
               <StaggerItem key={stat.label} className="text-center">

@@ -3,7 +3,10 @@ import { Reveal } from "@/components/ui/reveal";
 export function Vision() {
   return (
     <section id="vision" className="relative scroll-mt-24 py-24 sm:py-32">
-      <div aria-hidden className="glow-orb right-1/4 top-1/2 size-[440px] bg-white/[0.05]" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_60%_at_50%_50%,rgba(9,9,11,0.035),transparent_70%)]"
+      />
 
       <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
         <Reveal>

@@ -55,10 +55,10 @@ export function Products() {
 function StatusBadge({ status }: { status: Product["status"] }) {
   const tone =
     status === "live"
-      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+      ? "border-emerald-200 bg-emerald-50 text-emerald-700"
       : status === "development"
-        ? "border-product/30 bg-product/10 text-product"
-        : "border-line bg-white/[0.03] text-muted";
+        ? "border-product/25 bg-product/8 text-product"
+        : "border-line bg-surface text-muted";
 
   return (
     <span
@@ -73,36 +73,36 @@ function StatusBadge({ status }: { status: Product["status"] }) {
 /**
  * Vitrine complète du produit mis en avant : présentation, capacités et
  * fonctionnement. C'est le seul endroit du site où la couleur du produit
- * apparaît, pour qu'il ressorte sur l'identité monochrome de Velnex.
+ * apparaît, pour qu'il ressorte sur l'identité neutre de Velnex.
  */
 function ProductShowcase({ product }: { product: Product }) {
   return (
     <div id={product.slug} className="mt-16 scroll-mt-24">
       {/* Bloc principal */}
       <Reveal>
-        <article className="glass relative overflow-hidden rounded-3xl p-8 sm:p-12">
+        <article className="card relative overflow-hidden rounded-3xl p-8 shadow-[var(--shadow-float)] sm:p-12">
           {/* Voile coloré discret, signature du produit */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -right-32 -top-32 size-80 rounded-full bg-gradient-to-br from-product/25 to-product-2/10 blur-3xl"
+            className="pointer-events-none absolute -right-40 -top-40 size-96 rounded-full bg-[radial-gradient(circle,rgba(79,124,255,0.16),transparent_70%)]"
           />
 
           <div className="relative grid items-center gap-12 lg:grid-cols-2">
             <div>
               <div className="flex items-center gap-3">
-                <span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-product to-product-2 text-lg font-bold shadow-[0_10px_30px_-10px_var(--color-product)]">
+                <span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-product to-product-2 text-lg font-bold text-white shadow-[0_10px_26px_-8px_var(--color-product)]">
                   R
                 </span>
                 <StatusBadge status={product.status} />
               </div>
 
-              <h3 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">
+              <h3 className="mt-6 text-3xl font-semibold tracking-[-0.02em] sm:text-4xl">
                 {product.name}
               </h3>
               <p className="mt-2 text-[15px] text-muted">{product.tagline}</p>
 
               {/* Le problème résolu */}
-              <p className="mt-7 border-l-2 border-product/50 pl-4 text-[15px] italic leading-relaxed text-muted">
+              <p className="mt-7 border-l-2 border-product/40 pl-4 text-[15px] italic leading-relaxed text-muted">
                 « {product.problem} »
               </p>
 
@@ -133,9 +133,9 @@ function ProductShowcase({ product }: { product: Product }) {
       </Reveal>
 
       {/* Capacités */}
-      <div className="mt-8">
+      <div className="mt-16">
         <Reveal>
-          <h4 className="text-sm font-medium uppercase tracking-[0.16em] text-dim">
+          <h4 className="text-[11px] font-medium uppercase tracking-[0.18em] text-dim">
             Ce que fait {product.name}
           </h4>
         </Reveal>
@@ -151,7 +151,7 @@ function ProductShowcase({ product }: { product: Product }) {
       {/* Fonctionnement */}
       <div className="mt-16">
         <Reveal>
-          <h4 className="text-sm font-medium uppercase tracking-[0.16em] text-dim">
+          <h4 className="text-[11px] font-medium uppercase tracking-[0.18em] text-dim">
             Comment ça fonctionne
           </h4>
         </Reveal>
@@ -159,11 +159,11 @@ function ProductShowcase({ product }: { product: Product }) {
           {product.steps.map((step, index) => (
             <StaggerItem key={step.title}>
               <div className="relative">
-                <span className="font-mono text-xs text-product">
+                <span className="font-mono text-xs font-medium text-product">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div className="hairline my-4" />
-                <h5 className="font-medium tracking-tight">{step.title}</h5>
+                <h5 className="font-semibold tracking-tight">{step.title}</h5>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   {step.description}
                 </p>
@@ -179,11 +179,11 @@ function ProductShowcase({ product }: { product: Product }) {
 function CapabilityCard({ capability }: { capability: Capability }) {
   const Icon = ICONS[capability.icon];
   return (
-    <article className="glass glow-hover h-full rounded-2xl p-6 hover:-translate-y-1">
-      <span className="grid size-10 place-items-center rounded-xl border border-line bg-white/[0.03] text-white/80">
+    <article className="card lift h-full rounded-2xl p-6">
+      <span className="grid size-10 place-items-center rounded-xl border border-line bg-surface text-ink">
         <Icon className="size-[18px]" />
       </span>
-      <h5 className="mt-5 font-medium tracking-tight">{capability.title}</h5>
+      <h5 className="mt-5 font-semibold tracking-tight">{capability.title}</h5>
       <p className="mt-2 text-sm leading-relaxed text-muted">
         {capability.description}
       </p>
@@ -201,9 +201,9 @@ function ProductPreview() {
 
   return (
     <div aria-hidden className="relative">
-      <div className="glass rounded-2xl p-5 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.95)]">
+      <div className="rounded-2xl border border-line bg-white p-5 shadow-[var(--shadow-float)]">
         <div className="flex items-center justify-between border-b border-line pb-3">
-          <p className="text-xs text-muted">Classement des candidats</p>
+          <p className="text-xs font-medium">Classement des candidats</p>
           <span className="text-[10px] text-dim">Développeur Fullstack</span>
         </div>
 
@@ -214,7 +214,7 @@ function ProductPreview() {
                 className={`grid size-9 shrink-0 place-items-center rounded-full text-xs font-semibold ${
                   c.score >= 80
                     ? "bg-gradient-to-br from-product to-product-2 text-white"
-                    : "bg-white/[0.06] text-muted"
+                    : "bg-surface-2 text-muted"
                 }`}
               >
                 {c.initial}
@@ -222,12 +222,12 @@ function ProductPreview() {
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xs font-medium">{c.name}</p>
                 <p className="truncate text-[10px] text-dim">{c.role}</p>
-                <div className="mt-1.5 h-1 w-full rounded-full bg-white/[0.07]">
+                <div className="mt-1.5 h-1 w-full rounded-full bg-surface-2">
                   <div
                     className={`h-full rounded-full ${
                       c.score >= 80
                         ? "bg-gradient-to-r from-product to-product-2"
-                        : "bg-white/25"
+                        : "bg-ink/20"
                     }`}
                     style={{ width: `${c.score}%` }}
                   />
@@ -236,8 +236,8 @@ function ProductPreview() {
               <span
                 className={`shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold tabular-nums ${
                   c.score >= 80
-                    ? "bg-product/15 text-product"
-                    : "bg-white/[0.06] text-muted"
+                    ? "bg-product/10 text-product"
+                    : "bg-surface-2 text-muted"
                 }`}
               >
                 {c.score}
@@ -246,8 +246,10 @@ function ProductPreview() {
           ))}
         </div>
 
-        <div className="mt-5 rounded-xl border border-line bg-white/[0.02] p-3">
-          <p className="text-[10px] text-dim">Recommandation de l&apos;IA</p>
+        <div className="mt-5 rounded-xl border border-line bg-surface p-3">
+          <p className="text-[10px] font-medium text-dim">
+            Recommandation de l&apos;IA
+          </p>
           <p className="mt-1 text-[11px] leading-relaxed text-muted">
             Thomas M. correspond au poste sur l&apos;expérience et la stack.
             À convoquer en priorité.
@@ -261,7 +263,7 @@ function ProductPreview() {
 /** Carte compacte pour les futurs produits. */
 function CompactProduct({ product }: { product: Product }) {
   const inner = (
-    <article className="glass glow-hover flex h-full flex-col rounded-2xl p-7 hover:-translate-y-1">
+    <article className="card lift flex h-full flex-col rounded-2xl p-7">
       <div className="flex items-start justify-between gap-4">
         <h3 className="text-xl font-semibold tracking-tight">{product.name}</h3>
         <StatusBadge status={product.status} />
@@ -271,7 +273,7 @@ function CompactProduct({ product }: { product: Product }) {
         {product.description}
       </p>
       {product.href && (
-        <span className="mt-6 inline-flex items-center gap-1.5 text-sm text-white">
+        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium">
           {product.cta}
           <ArrowUpRightIcon className="size-4" />
         </span>
