@@ -6,15 +6,15 @@ export const SITE = {
   title: "Velnex | Créateur de solutions SaaS propulsées par l'IA",
   description:
     "Velnex développe des logiciels SaaS innovants basés sur l'intelligence artificielle pour accompagner les entreprises dans leur transformation numérique.",
-  email: "contact@velnex.fr",
+  email: "contact.velnex@gmail.com",
   locale: "fr_FR",
 } as const;
 
 /** Liens de navigation principaux (navbar + footer). */
 export const NAV_LINKS = [
   { label: "Accueil", href: "/" },
-  { label: "Produits", href: "/#produits" },
-  { label: "Vision", href: "/#vision" },
+  { label: "RecrutIA", href: "/recrutia" },
+  { label: "À propos", href: "/#a-propos" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 

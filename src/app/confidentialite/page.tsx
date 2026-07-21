@@ -25,7 +25,7 @@ export default function ConfidentialitePage() {
           Le site velnex.fr est un site vitrine. Il ne propose pas de création de
           compte et ne collecte pas de données personnelles au-delà de ce que
           vous nous transmettez volontairement, par exemple lorsque vous nous
-          écrivez à contact@velnex.fr.
+          écrivez à contact.velnex@gmail.com.
         </p>
       </LegalSection>
 
@@ -64,7 +64,7 @@ export default function ConfidentialitePage() {
           Conformément au RGPD, vous disposez d&apos;un droit d&apos;accès, de
           rectification, d&apos;effacement et de portabilité de vos données. Pour
           l&apos;exercer, écrivez à{" "}
-          <a href="mailto:contact@velnex.fr">contact@velnex.fr</a>.
+          <a href="mailto:contact.velnex@gmail.com">contact.velnex@gmail.com</a>.
         </p>
       </LegalSection>
     </LegalPage>

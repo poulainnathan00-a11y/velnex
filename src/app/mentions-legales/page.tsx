@@ -25,7 +25,7 @@ export default function MentionsLegalesPage() {
           <li>Adresse : 3 rue Georges Bizet, 62219 Longuenesse, France</li>
           <li>TVA : non applicable, art. 293 B du CGI</li>
           <li>
-            Contact : <a href="mailto:contact@velnex.fr">contact@velnex.fr</a>
+            Contact : <a href="mailto:contact.velnex@gmail.com">contact.velnex@gmail.com</a>
           </li>
         </ul>
       </LegalSection>

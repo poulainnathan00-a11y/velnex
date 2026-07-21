@@ -1,5 +1,6 @@
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import { About } from "@/components/sections/about";
 import { Cta } from "@/components/sections/cta";
 import { Hero } from "@/components/sections/hero";
 import { Products } from "@/components/sections/products";
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <WhyVelnex />
         <Products />
+        <About />
         <Vision />
         <Stats />
         <Cta />
