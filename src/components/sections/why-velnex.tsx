@@ -35,7 +35,7 @@ export function WhyVelnex() {
           {PILLARS.map((pillar) => (
             <StaggerItem key={pillar.title}>
               <article className="glass glow-hover group h-full rounded-2xl p-8 hover:-translate-y-1">
-                <span className="grid size-12 place-items-center rounded-xl border border-line bg-white/[0.03] text-brand-soft transition-colors duration-300 group-hover:border-brand/40 group-hover:text-brand">
+                <span className="grid size-12 place-items-center rounded-xl border border-line bg-white/[0.03] text-white/70 transition-colors duration-300 group-hover:border-line-strong group-hover:text-white">
                   <pillar.icon className="size-5" />
                 </span>
                 <h3 className="mt-6 text-lg font-semibold tracking-tight">

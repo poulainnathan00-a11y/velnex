@@ -20,7 +20,7 @@ export function SectionHeading({
   return (
     <Reveal className={alignment}>
       {label && (
-        <span className="text-xs font-medium uppercase tracking-[0.18em] text-brand-soft">
+        <span className="text-xs font-medium uppercase tracking-[0.18em] text-dim">
           {label}
         </span>
       )}

@@ -1,52 +1,63 @@
-import { ArrowUpRightIcon, CheckIcon } from "lucide-react";
+import {
+  ArrowUpRightIcon,
+  BarChart3Icon,
+  MailIcon,
+  MessagesSquareIcon,
+  ScaleIcon,
+  ScanTextIcon,
+  TargetIcon,
+} from "lucide-react";
 
-import { PRODUCTS, STATUS_LABEL, type Product } from "@/data/products";
+import { PRODUCTS, STATUS_LABEL, type Capability, type Product } from "@/data/products";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
+const ICONS = {
+  scan: ScanTextIcon,
+  target: TargetIcon,
+  scale: ScaleIcon,
+  messages: MessagesSquareIcon,
+  mail: MailIcon,
+  chart: BarChart3Icon,
+} as const;
+
 export function Products() {
-  const featured = PRODUCTS.filter((p) => p.featured);
+  const featured = PRODUCTS.find((p) => p.featured);
   const others = PRODUCTS.filter((p) => !p.featured);
 
   return (
     <section id="produits" className="relative scroll-mt-24 py-24 sm:py-32">
-      <div aria-hidden className="glow-orb left-1/4 top-1/3 size-[420px] bg-brand/10" />
-
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <SectionHeading
           label="Nos produits"
-          title="Des SaaS pensés pour faire gagner du temps"
-          description="Chaque produit Velnex répond à un problème concret, avec l'intelligence artificielle au cœur de son fonctionnement."
+          title="Un premier produit, pensé jusqu'au détail"
+          description="Velnex construit des SaaS qui résolvent un problème concret. Voici celui sur lequel nous travaillons aujourd'hui."
         />
 
-        <div className="mt-16 space-y-6">
-          {featured.map((product) => (
-            <FeaturedProduct key={product.slug} product={product} />
-          ))}
+        {featured && <ProductShowcase product={featured} />}
 
-          {others.length > 0 && (
-            <Stagger className="grid gap-6 md:grid-cols-2">
-              {others.map((product) => (
-                <StaggerItem key={product.slug}>
-                  <CompactProduct product={product} />
-                </StaggerItem>
-              ))}
-            </Stagger>
-          )}
-        </div>
+        {others.length > 0 && (
+          <Stagger className="mt-8 grid gap-6 md:grid-cols-2">
+            {others.map((product) => (
+              <StaggerItem key={product.slug}>
+                <CompactProduct product={product} />
+              </StaggerItem>
+            ))}
+          </Stagger>
+        )}
       </div>
     </section>
   );
 }
 
-/** Pastille de statut (En développement / Disponible / À venir). */
-function StatusBadge({ product }: { product: Product }) {
+/** Pastille de statut. */
+function StatusBadge({ status }: { status: Product["status"] }) {
   const tone =
-    product.status === "live"
+    status === "live"
       ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
-      : product.status === "development"
-        ? "border-brand/30 bg-brand/10 text-brand-soft"
+      : status === "development"
+        ? "border-product/30 bg-product/10 text-product"
         : "border-line bg-white/[0.03] text-muted";
 
   return (
@@ -54,102 +65,169 @@ function StatusBadge({ product }: { product: Product }) {
       className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium ${tone}`}
     >
       <span className="size-1.5 rounded-full bg-current" />
-      {STATUS_LABEL[product.status]}
+      {STATUS_LABEL[status]}
     </span>
   );
 }
 
-/** Grande carte premium pour le produit mis en avant. */
-function FeaturedProduct({ product }: { product: Product }) {
+/**
+ * Vitrine complète du produit mis en avant : présentation, capacités et
+ * fonctionnement. C'est le seul endroit du site où la couleur du produit
+ * apparaît, pour qu'il ressorte sur l'identité monochrome de Velnex.
+ */
+function ProductShowcase({ product }: { product: Product }) {
   return (
-    <Reveal>
-      <article className="glass glow-hover relative overflow-hidden rounded-3xl p-8 sm:p-12">
-        {/* Dégradé décoratif */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-gradient-to-br from-brand/20 to-accent/10 blur-3xl"
-        />
+    <div id={product.slug} className="mt-16 scroll-mt-24">
+      {/* Bloc principal */}
+      <Reveal>
+        <article className="glass relative overflow-hidden rounded-3xl p-8 sm:p-12">
+          {/* Voile coloré discret, signature du produit */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-32 -top-32 size-80 rounded-full bg-gradient-to-br from-product/25 to-product-2/10 blur-3xl"
+          />
 
-        <div className="relative grid items-center gap-10 lg:grid-cols-2">
-          {/* Infos */}
-          <div>
-            <StatusBadge product={product} />
-            <h3 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">
-              {product.name}
-            </h3>
-            <p className="mt-2 text-brand-soft">{product.tagline}</p>
-            <p className="mt-5 max-w-xl leading-relaxed text-muted">
-              {product.description}
-            </p>
-
-            <ul className="mt-7 grid gap-2.5 sm:grid-cols-2">
-              {product.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2.5 text-sm">
-                  <CheckIcon className="mt-0.5 size-4 shrink-0 text-brand" />
-                  <span className="text-muted">{feature}</span>
-                </li>
-              ))}
-            </ul>
-
-            {product.href && (
-              <div className="mt-9">
-                <ButtonLink
-                  href={product.href}
-                  size="lg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {product.cta}
-                  <ArrowUpRightIcon className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </ButtonLink>
+          <div className="relative grid items-center gap-12 lg:grid-cols-2">
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-product to-product-2 text-lg font-bold shadow-[0_10px_30px_-10px_var(--color-product)]">
+                  R
+                </span>
+                <StatusBadge status={product.status} />
               </div>
-            )}
-          </div>
 
-          {/* Aperçu produit */}
-          <ProductPreview />
-        </div>
-      </article>
-    </Reveal>
+              <h3 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">
+                {product.name}
+              </h3>
+              <p className="mt-2 text-[15px] text-muted">{product.tagline}</p>
+
+              {/* Le problème résolu */}
+              <p className="mt-7 border-l-2 border-product/50 pl-4 text-[15px] italic leading-relaxed text-muted">
+                « {product.problem} »
+              </p>
+
+              <p className="mt-6 leading-relaxed text-muted">
+                {product.description}
+              </p>
+
+              {product.href && (
+                <div className="mt-9 flex flex-wrap items-center gap-3">
+                  <ButtonLink
+                    href={product.href}
+                    variant="product"
+                    size="lg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {product.cta}
+                    <ArrowUpRightIcon className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </ButtonLink>
+                  <span className="text-sm text-dim">recrutia.pro</span>
+                </div>
+              )}
+            </div>
+
+            <ProductPreview />
+          </div>
+        </article>
+      </Reveal>
+
+      {/* Capacités */}
+      <div className="mt-8">
+        <Reveal>
+          <h4 className="text-sm font-medium uppercase tracking-[0.16em] text-dim">
+            Ce que fait {product.name}
+          </h4>
+        </Reveal>
+        <Stagger className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {product.capabilities.map((capability) => (
+            <StaggerItem key={capability.title}>
+              <CapabilityCard capability={capability} />
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
+
+      {/* Fonctionnement */}
+      <div className="mt-16">
+        <Reveal>
+          <h4 className="text-sm font-medium uppercase tracking-[0.16em] text-dim">
+            Comment ça fonctionne
+          </h4>
+        </Reveal>
+        <Stagger className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {product.steps.map((step, index) => (
+            <StaggerItem key={step.title}>
+              <div className="relative">
+                <span className="font-mono text-xs text-product">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="hairline my-4" />
+                <h5 className="font-medium tracking-tight">{step.title}</h5>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {step.description}
+                </p>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
+    </div>
+  );
+}
+
+function CapabilityCard({ capability }: { capability: Capability }) {
+  const Icon = ICONS[capability.icon];
+  return (
+    <article className="glass glow-hover h-full rounded-2xl p-6 hover:-translate-y-1">
+      <span className="grid size-10 place-items-center rounded-xl border border-line bg-white/[0.03] text-white/80">
+        <Icon className="size-[18px]" />
+      </span>
+      <h5 className="mt-5 font-medium tracking-tight">{capability.title}</h5>
+      <p className="mt-2 text-sm leading-relaxed text-muted">
+        {capability.description}
+      </p>
+    </article>
   );
 }
 
 /** Aperçu stylisé du produit (décoratif). */
 function ProductPreview() {
   const candidates = [
-    { initial: "T", name: "Thomas M.", score: 92, tone: "emerald" },
-    { initial: "L", name: "Léa D.", score: 74, tone: "brand" },
-    { initial: "K", name: "Karim B.", score: 51, tone: "muted" },
+    { initial: "T", name: "Thomas M.", role: "6 ans · React, Node", score: 92 },
+    { initial: "L", name: "Léa D.", role: "3 ans · React, UX", score: 74 },
+    { initial: "K", name: "Karim B.", role: "1 an · JavaScript", score: 51 },
   ];
 
   return (
     <div aria-hidden className="relative">
-      <div className="glass rounded-2xl p-5 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]">
+      <div className="glass rounded-2xl p-5 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.95)]">
         <div className="flex items-center justify-between border-b border-line pb-3">
           <p className="text-xs text-muted">Classement des candidats</p>
-          <span className="text-[10px] text-muted">Poste : Développeur</span>
+          <span className="text-[10px] text-dim">Développeur Fullstack</span>
         </div>
 
-        <div className="mt-4 space-y-3">
+        <div className="mt-4 space-y-4">
           {candidates.map((c) => (
             <div key={c.name} className="flex items-center gap-3">
               <span
-                className={`grid size-8 shrink-0 place-items-center rounded-full text-xs font-semibold ${
-                  c.tone === "emerald"
-                    ? "bg-gradient-to-br from-brand to-accent text-white"
+                className={`grid size-9 shrink-0 place-items-center rounded-full text-xs font-semibold ${
+                  c.score >= 80
+                    ? "bg-gradient-to-br from-product to-product-2 text-white"
                     : "bg-white/[0.06] text-muted"
                 }`}
               >
                 {c.initial}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-xs">{c.name}</p>
+                <p className="truncate text-xs font-medium">{c.name}</p>
+                <p className="truncate text-[10px] text-dim">{c.role}</p>
                 <div className="mt-1.5 h-1 w-full rounded-full bg-white/[0.07]">
                   <div
                     className={`h-full rounded-full ${
-                      c.tone === "muted"
-                        ? "bg-white/25"
-                        : "bg-gradient-to-r from-brand to-accent"
+                      c.score >= 80
+                        ? "bg-gradient-to-r from-product to-product-2"
+                        : "bg-white/25"
                     }`}
                     style={{ width: `${c.score}%` }}
                   />
@@ -158,10 +236,8 @@ function ProductPreview() {
               <span
                 className={`shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold tabular-nums ${
                   c.score >= 80
-                    ? "bg-emerald-500/15 text-emerald-400"
-                    : c.score >= 60
-                      ? "bg-brand/15 text-brand-soft"
-                      : "bg-white/[0.06] text-muted"
+                    ? "bg-product/15 text-product"
+                    : "bg-white/[0.06] text-muted"
                 }`}
               >
                 {c.score}
@@ -169,20 +245,28 @@ function ProductPreview() {
             </div>
           ))}
         </div>
+
+        <div className="mt-5 rounded-xl border border-line bg-white/[0.02] p-3">
+          <p className="text-[10px] text-dim">Recommandation de l&apos;IA</p>
+          <p className="mt-1 text-[11px] leading-relaxed text-muted">
+            Thomas M. correspond au poste sur l&apos;expérience et la stack.
+            À convoquer en priorité.
+          </p>
+        </div>
       </div>
     </div>
   );
 }
 
-/** Carte compacte pour les produits suivants. */
+/** Carte compacte pour les futurs produits. */
 function CompactProduct({ product }: { product: Product }) {
   const inner = (
     <article className="glass glow-hover flex h-full flex-col rounded-2xl p-7 hover:-translate-y-1">
       <div className="flex items-start justify-between gap-4">
         <h3 className="text-xl font-semibold tracking-tight">{product.name}</h3>
-        <StatusBadge product={product} />
+        <StatusBadge status={product.status} />
       </div>
-      <p className="mt-1.5 text-sm text-brand-soft">{product.tagline}</p>
+      <p className="mt-1.5 text-sm text-muted">{product.tagline}</p>
       <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
         {product.description}
       </p>
@@ -198,7 +282,12 @@ function CompactProduct({ product }: { product: Product }) {
   if (!product.href) return inner;
 
   return (
-    <a href={product.href} target="_blank" rel="noopener noreferrer" className="block h-full">
+    <a
+      href={product.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block h-full"
+    >
       {inner}
     </a>
   );

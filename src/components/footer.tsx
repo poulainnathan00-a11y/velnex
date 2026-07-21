@@ -128,7 +128,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className={`${classes} hover:border-brand/40 hover:text-white`}
+                  className={`${classes} hover:border-line-strong hover:text-white`}
                 >
                   <Icon className="size-4" />
                 </a>

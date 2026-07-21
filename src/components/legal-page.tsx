@@ -18,7 +18,7 @@ export function LegalPage({
       <Navbar />
       <main className="flex-1">
         <div className="relative">
-          <div aria-hidden className="glow-orb -top-24 left-1/2 size-[420px] -translate-x-1/2 bg-brand/15" />
+          <div aria-hidden className="glow-orb -top-24 left-1/2 size-[420px] -translate-x-1/2 bg-white/[0.06]" />
           <div className="mx-auto max-w-3xl px-6 pb-24 pt-36 lg:px-8">
             <h1 className="text-4xl font-semibold tracking-tight">{title}</h1>
             <p className="mt-3 text-sm text-muted">
@@ -44,7 +44,7 @@ export function LegalSection({
   return (
     <section>
       <h2 className="text-lg font-semibold tracking-tight">{heading}</h2>
-      <div className="mt-3 space-y-3 leading-relaxed text-muted [&_a]:text-brand-soft [&_a:hover]:underline">
+      <div className="mt-3 space-y-3 leading-relaxed text-muted [&_a]:text-white [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-line-strong [&_a:hover]:decoration-white">
         {children}
       </div>
     </section>

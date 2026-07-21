@@ -11,50 +11,47 @@ export function Cta() {
   return (
     <section id="contact" className="scroll-mt-24 px-6 py-24 sm:py-32 lg:px-8">
       <Reveal className="mx-auto max-w-5xl">
-        <div className="relative overflow-hidden rounded-3xl px-8 py-16 text-center sm:px-16 sm:py-20">
-          {/* Dégradé bleu → violet */}
+        <div className="relative overflow-hidden rounded-3xl border border-line bg-surface px-8 py-16 text-center sm:px-16 sm:py-20">
+          {/* Grille + halo blanc diffus */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 grid-fade" />
           <div
             aria-hidden
-            className="absolute inset-0 -z-10 bg-[linear-gradient(120deg,#2b4bd8_0%,#4f7cff_45%,#7c4dff_100%)]"
-          />
-          {/* Voiles lumineux */}
-          <div
-            aria-hidden
-            className="absolute -left-20 -top-20 -z-10 size-72 rounded-full bg-white/20 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="absolute -bottom-24 -right-16 -z-10 size-80 rounded-full bg-accent/40 blur-3xl"
+            className="pointer-events-none absolute left-1/2 top-0 size-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.07] blur-3xl"
           />
 
-          <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-[40px] sm:leading-[1.12]">
-            Prêt à découvrir les SaaS de demain ?
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-white/80">
-            Explorez notre premier produit, ou parlons de votre projet — nous
-            répondons rapidement.
-          </p>
+          <div className="relative">
+            <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight sm:text-[40px] sm:leading-[1.12]">
+              {/* Espace insécable avant « ? » : typographie FR + évite que le
+                  point d'interrogation se retrouve seul en fin de ligne. */}
+              <span className="text-gradient">
+                Prêt à découvrir les SaaS de demain&nbsp;?
+              </span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-muted">
+              Explorez notre premier produit, ou parlons de votre projet — nous
+              répondons rapidement.
+            </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            {featured?.href && (
-              <ButtonLink
-                href={featured.href}
-                size="lg"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="!bg-white !text-[#2b4bd8] !shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] hover:!bg-white/95"
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              {featured?.href && (
+                <ButtonLink
+                  href={featured.href}
+                  size="lg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {featured.cta}
+                  <ArrowUpRightIcon className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </ButtonLink>
+              )}
+              <a
+                href={`mailto:${SITE.email}`}
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-line bg-white/[0.03] px-7 text-[15px] font-medium text-white/90 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:text-white"
               >
-                {featured.cta}
-                <ArrowUpRightIcon className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </ButtonLink>
-            )}
-            <a
-              href={`mailto:${SITE.email}`}
-              className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 text-[15px] font-medium text-white backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20"
-            >
-              <MailIcon className="size-4" />
-              {SITE.email}
-            </a>
+                <MailIcon className="size-4" />
+                {SITE.email}
+              </a>
+            </div>
           </div>
         </div>
       </Reveal>
