@@ -30,9 +30,9 @@ export function Products() {
     <section id="produits" className="relative scroll-mt-24 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <SectionHeading
-          label="Nos produits"
-          title="Un premier produit, pensé jusqu'au détail"
-          description="Velnex construit des SaaS qui résolvent un problème concret. Voici celui sur lequel nous travaillons aujourd'hui."
+          label="Notre produit phare"
+          title="RecrutIA, le recrutement assisté par IA"
+          description="C'est le produit sur lequel Velnex concentre son énergie aujourd'hui : une plateforme complète qui fait gagner des heures aux recruteurs, du tri des CV jusqu'à l'entretien."
         />
 
         {featured && <ProductShowcase product={featured} />}
@@ -122,7 +122,9 @@ function ProductShowcase({ product }: { product: Product }) {
                     {product.cta}
                     <ArrowUpRightIcon className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </ButtonLink>
-                  <span className="text-sm text-dim">recrutia.pro</span>
+                  <ButtonLink href="/recrutia" variant="secondary" size="lg">
+                    En savoir plus
+                  </ButtonLink>
                 </div>
               )}
             </div>
@@ -130,6 +132,27 @@ function ProductShowcase({ product }: { product: Product }) {
             <ProductPreview />
           </div>
         </article>
+      </Reveal>
+
+      {/* Bande d'impact : ce que RecrutIA change concrètement */}
+      <Reveal>
+        <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { value: "~30 s", label: "pour analyser un CV" },
+            { value: "/100", label: "un score expliqué critère par critère" },
+            { value: "9", label: "dimensions analysées par l'IA" },
+            { value: "1 clic", label: "pour contacter un candidat" },
+          ].map((stat) => (
+            <div key={stat.label} className="bg-background p-6">
+              <p className="text-2xl font-semibold tracking-tight text-product">
+                {stat.value}
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
       </Reveal>
 
       {/* Capacités */}
@@ -172,6 +195,36 @@ function ProductShowcase({ product }: { product: Product }) {
           ))}
         </Stagger>
       </div>
+
+      {/* Renvoi vers la page dédiée (captures d'écran, détails) */}
+      <Reveal>
+        <div className="mt-16 flex flex-col items-center gap-4 rounded-3xl border border-line bg-surface px-8 py-12 text-center">
+          <h4 className="text-xl font-semibold tracking-tight sm:text-2xl">
+            Envie de voir RecrutIA en action&nbsp;?
+          </h4>
+          <p className="max-w-md text-sm leading-relaxed text-muted">
+            Captures d&apos;écran, fonctionnement détaillé et exemples concrets :
+            la page produit vous montre tout.
+          </p>
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
+            <ButtonLink href="/recrutia" size="lg">
+              Découvrir la page RecrutIA
+              <ArrowUpRightIcon className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </ButtonLink>
+            {product.href && (
+              <ButtonLink
+                href={product.href}
+                variant="product"
+                size="lg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ouvrir recrutia.pro
+              </ButtonLink>
+            )}
+          </div>
+        </div>
+      </Reveal>
     </div>
   );
 }
@@ -227,7 +280,7 @@ function ProductPreview() {
                     className={`h-full rounded-full ${
                       c.score >= 80
                         ? "bg-gradient-to-r from-product to-product-2"
-                        : "bg-white/20"
+                        : "bg-ink/15"
                     }`}
                     style={{ width: `${c.score}%` }}
                   />
