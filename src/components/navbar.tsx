@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { MenuIcon, XIcon } from "lucide-react";
+import { CalendarIcon, MenuIcon, XIcon } from "lucide-react";
 
 import { Logo } from "@/components/logo";
 import { buttonClass } from "@/components/ui/button";
@@ -33,10 +33,10 @@ export function Navbar() {
       <motion.div
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+        transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
         className={`transition-all duration-500 ${
           scrolled
-            ? "border-b border-line bg-white/80 backdrop-blur-xl"
+            ? "border-b border-line bg-background/70 backdrop-blur-xl"
             : "border-b border-transparent"
         }`}
       >
@@ -44,12 +44,12 @@ export function Navbar() {
           <Logo />
 
           {/* Navigation desktop */}
-          <div className="hidden items-center gap-9 md:flex">
+          <div className="hidden items-center gap-8 lg:flex">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted transition-colors hover:text-ink"
+                className="relative text-sm text-muted transition-colors duration-300 hover:text-white"
               >
                 {link.label}
               </Link>
@@ -57,21 +57,19 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Enveloppe pour masquer sur mobile : `buttonClass` porte déjà
-                `inline-flex`, qui entrerait en conflit avec `hidden`. */}
-            <span className="hidden md:block">
-              <Link href="/#recrutia" className={buttonClass("primary", "md")}>
-                Nos produits
+            <span className="hidden lg:block">
+              <Link href="/#contact" className={buttonClass("primary", "md")}>
+                <CalendarIcon className="size-4" />
+                Prendre rendez-vous
               </Link>
             </span>
 
-            {/* Burger mobile */}
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={open}
-              className="grid size-10 place-items-center rounded-xl text-muted transition-colors hover:bg-surface-2 hover:text-ink md:hidden"
+              className="grid size-10 place-items-center rounded-xl text-muted transition-colors hover:bg-white/5 hover:text-white lg:hidden"
             >
               {open ? <XIcon className="size-5" /> : <MenuIcon className="size-5" />}
             </button>
@@ -87,7 +85,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
-            className="border-b border-line bg-white/95 backdrop-blur-xl md:hidden"
+            className="border-b border-line bg-background/95 backdrop-blur-xl lg:hidden"
           >
             <div className="flex flex-col gap-1 px-6 pb-6 pt-2">
               {NAV_LINKS.map((link) => (
@@ -95,17 +93,18 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-surface-2 hover:text-ink"
+                  className="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/5 hover:text-white"
                 >
                   {link.label}
                 </Link>
               ))}
               <Link
-                href="/#recrutia"
+                href="/#contact"
                 onClick={() => setOpen(false)}
                 className={`${buttonClass("primary", "lg")} mt-3 w-full`}
               >
-                Nos produits
+                <CalendarIcon className="size-4" />
+                Prendre rendez-vous
               </Link>
             </div>
           </motion.div>

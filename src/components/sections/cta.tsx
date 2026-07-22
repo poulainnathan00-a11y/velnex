@@ -3,27 +3,28 @@ import { Reveal } from "@/components/ui/reveal";
 
 export function Cta() {
   return (
-    <section id="contact" className="scroll-mt-24 px-6 py-24 sm:py-32 lg:px-8">
-      <div className="mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-        {/* Accroche */}
-        <Reveal>
-          <div className="lg:sticky lg:top-28">
-            <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-dim">
-              Contact
+    <section id="contact" className="relative scroll-mt-24 py-24 sm:py-32">
+      {/* Halo qui attire l'œil sur la zone de conversion */}
+      <div
+        aria-hidden
+        className="glow-orb left-1/2 top-0 size-[560px] -translate-x-1/2 bg-white/[0.05]"
+      />
+
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-semibold tracking-[-0.03em] sm:text-[44px] sm:leading-[1.1]">
+            <span className="text-gradient">
+              Prêt à transformer votre entreprise&nbsp;?
             </span>
-            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.02em] sm:text-[40px] sm:leading-[1.12]">
-              <span className="text-gradient">Parlons de votre projet.</span>
-            </h2>
-            <p className="mt-5 max-w-md text-[17px] leading-relaxed text-muted">
-              Une question sur RecrutIA, une idée de collaboration ou un besoin
-              particulier&nbsp;? Écrivez-nous, nous répondons rapidement.
-            </p>
-          </div>
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-muted">
+            Décrivez-nous votre besoin en quelques lignes. Nous revenons vers
+            vous sous 48 h avec une première piste concrète.
+          </p>
         </Reveal>
 
-        {/* Formulaire */}
-        <Reveal delay={0.1}>
-          <div className="card rounded-3xl p-6 shadow-[var(--shadow-lift)] sm:p-8">
+        <Reveal delay={0.12} className="mx-auto mt-14 max-w-2xl">
+          <div className="card ring-sheen rounded-3xl p-6 sm:p-10">
             <ContactForm />
           </div>
         </Reveal>

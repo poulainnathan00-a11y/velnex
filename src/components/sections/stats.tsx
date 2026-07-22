@@ -8,19 +8,21 @@ import { Stagger, StaggerItem } from "@/components/ui/reveal";
 type Stat = {
   /** Valeur numérique à animer, ou texte fixe si `display` est fourni. */
   to?: number;
+  prefix?: string;
   suffix?: string;
   display?: string;
   label: string;
 };
 
 const STATS: Stat[] = [
-  { to: 1, label: "produit en développement" },
-  { to: 100, suffix: " %", label: "développé en France" },
-  { display: "IA", label: "au cœur de nos solutions" },
+  { to: 1000, prefix: "+", label: "heures automatisables" },
+  { display: "IA", label: "intégrée à chaque produit" },
+  { to: 100, suffix: " %", label: "sur mesure" },
+  { display: "🇫🇷", label: "support français" },
 ];
 
 /** Compteur qui s'anime lorsqu'il entre dans le viewport. */
-function Counter({ to, duration = 1.6 }: { to: number; duration?: number }) {
+function Counter({ to, duration = 1.8 }: { to: number; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [value, setValue] = useState(0);
@@ -28,8 +30,6 @@ function Counter({ to, duration = 1.6 }: { to: number; duration?: number }) {
   useEffect(() => {
     if (!inView) return;
 
-    // Mouvement réduit : durée nulle → la valeur finale est posée dès la
-    // première frame (on évite un setState synchrone dans l'effet).
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const total = reduce ? 0 : duration * 1000;
 
@@ -45,32 +45,31 @@ function Counter({ to, duration = 1.6 }: { to: number; duration?: number }) {
     return () => cancelAnimationFrame(raf);
   }, [inView, to, duration]);
 
-  return <span ref={ref}>{value}</span>;
+  return <span ref={ref}>{value.toLocaleString("fr-FR")}</span>;
 }
 
 export function Stats() {
   return (
-    <section className="relative py-20 sm:py-24">
+    <section className="relative border-y border-line py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="card rounded-3xl px-8 py-14 sm:px-12">
-          <Stagger className="grid gap-12 sm:grid-cols-3">
-            {STATS.map((stat) => (
-              <StaggerItem key={stat.label} className="text-center">
-                <p className="text-5xl font-semibold tracking-tight tabular-nums sm:text-6xl">
-                  <span className="text-gradient">
-                    {stat.display ?? (
-                      <>
-                        <Counter to={stat.to ?? 0} />
-                        {stat.suffix}
-                      </>
-                    )}
-                  </span>
-                </p>
-                <p className="mt-4 text-sm text-muted">{stat.label}</p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
+        <Stagger className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {STATS.map((stat) => (
+            <StaggerItem key={stat.label} className="text-center">
+              <p className="text-4xl font-semibold tracking-tight tabular-nums sm:text-[42px]">
+                <span className="text-gradient">
+                  {stat.display ?? (
+                    <>
+                      {stat.prefix}
+                      <Counter to={stat.to ?? 0} />
+                      {stat.suffix}
+                    </>
+                  )}
+                </span>
+              </p>
+              <p className="mt-3 text-sm text-muted">{stat.label}</p>
+            </StaggerItem>
+          ))}
+        </Stagger>
       </div>
     </section>
   );

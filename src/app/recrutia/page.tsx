@@ -83,7 +83,7 @@ export default function RecrutiaPage() {
       <main className="flex-1">
         {/* -------------------------------------------------------- Hero */}
         <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40">
-          <div aria-hidden className="pointer-events-none absolute inset-0 dot-fade" />
+          <div aria-hidden className="pointer-events-none absolute inset-0 grid-bg" />
           <div
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[480px] bg-[radial-gradient(ellipse_55%_60%_at_50%_0%,rgba(79,124,255,0.12),transparent_70%)]"
@@ -192,7 +192,7 @@ export default function RecrutiaPage() {
                 return (
                   <StaggerItem key={capability.title}>
                     <article className="card lift h-full rounded-2xl p-6">
-                      <span className="grid size-10 place-items-center rounded-xl border border-line bg-surface text-ink">
+                      <span className="grid size-10 place-items-center rounded-xl border border-line bg-white/[0.03] text-white">
                         <Icon className="size-[18px]" />
                       </span>
                       <h3 className="mt-5 font-semibold tracking-tight">
@@ -241,7 +241,7 @@ export default function RecrutiaPage() {
         {/* ---------------------------------------------------- CTA */}
         <section className="px-6 py-20 sm:py-28 lg:px-8">
           <Reveal className="mx-auto max-w-5xl">
-            <div className="inverse relative overflow-hidden rounded-3xl px-8 py-16 text-center shadow-[var(--shadow-float)] sm:px-16 sm:py-20">
+            <div className="card ring-sheen relative overflow-hidden rounded-3xl px-8 py-16 text-center shadow-[0_30px_80px_-30px_rgba(0,0,0,1)] sm:px-16 sm:py-20">
               <div
                 aria-hidden
                 className="pointer-events-none absolute left-1/2 top-0 size-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(79,124,255,0.32),transparent_65%)] blur-2xl"
@@ -259,7 +259,7 @@ export default function RecrutiaPage() {
                 <div className="mt-10">
                   <ButtonLink
                     href={product.href ?? "#"}
-                    variant="onDark"
+                    variant="primary"
                     size="lg"
                     target="_blank"
                     rel="noopener noreferrer"

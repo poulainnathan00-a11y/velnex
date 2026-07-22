@@ -40,7 +40,7 @@ export function ContactForm() {
   }
 
   const field =
-    "h-11 w-full rounded-xl border border-line bg-white px-4 text-sm text-ink outline-none transition-colors placeholder:text-dim focus:border-ink/30 focus:ring-4 focus:ring-ink/5";
+    "h-11 w-full rounded-xl border border-line bg-white/[0.02] px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-dim focus:border-line-strong focus:bg-white/[0.04] focus:ring-4 focus:ring-white/5";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 text-left">
@@ -98,13 +98,13 @@ export function ContactForm() {
           required
           rows={5}
           placeholder="Dites-nous en quelques mots ce dont vous avez besoin…"
-          className="w-full resize-y rounded-xl border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-dim focus:border-ink/30 focus:ring-4 focus:ring-ink/5"
+          className="w-full resize-y rounded-xl border border-line bg-white/[0.02] px-4 py-3 text-sm text-white outline-none transition-all duration-300 placeholder:text-dim focus:border-line-strong focus:bg-white/[0.04] focus:ring-4 focus:ring-white/5"
         />
       </div>
 
       <button
         type="submit"
-        className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-ink px-7 text-[15px] font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink/90 hover:shadow-[0_12px_30px_-10px_rgba(9,9,11,0.5)] sm:w-auto"
+        className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-7 text-[15px] font-medium text-background transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-12px_rgba(255,255,255,0.35)] sm:w-auto"
       >
         {sent ? (
           <>
@@ -125,7 +125,7 @@ export function ContactForm() {
           : "L'envoi ouvre votre logiciel de messagerie avec le message pré-rempli. Vous pouvez aussi écrire directement à "}
         <a
           href={`mailto:${SITE.email}`}
-          className="text-ink underline underline-offset-4 decoration-line-strong hover:decoration-ink"
+          className="text-white underline underline-offset-4 decoration-line-strong hover:decoration-white"
         >
           {SITE.email}
         </a>

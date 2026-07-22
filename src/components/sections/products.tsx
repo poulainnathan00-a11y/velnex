@@ -58,7 +58,7 @@ function StatusBadge({ status }: { status: Product["status"] }) {
       ? "border-emerald-200 bg-emerald-50 text-emerald-700"
       : status === "development"
         ? "border-product/25 bg-product/8 text-product"
-        : "border-line bg-surface text-muted";
+        : "border-line bg-white/[0.03] text-muted";
 
   return (
     <span
@@ -80,7 +80,7 @@ function ProductShowcase({ product }: { product: Product }) {
     <div id={product.slug} className="mt-16 scroll-mt-24">
       {/* Bloc principal */}
       <Reveal>
-        <article className="card relative overflow-hidden rounded-3xl p-8 shadow-[var(--shadow-float)] sm:p-12">
+        <article className="card relative overflow-hidden rounded-3xl p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,1)] sm:p-12">
           {/* Voile coloré discret, signature du produit */}
           <div
             aria-hidden
@@ -180,7 +180,7 @@ function CapabilityCard({ capability }: { capability: Capability }) {
   const Icon = ICONS[capability.icon];
   return (
     <article className="card lift h-full rounded-2xl p-6">
-      <span className="grid size-10 place-items-center rounded-xl border border-line bg-surface text-ink">
+      <span className="grid size-10 place-items-center rounded-xl border border-line bg-white/[0.03] text-white">
         <Icon className="size-[18px]" />
       </span>
       <h5 className="mt-5 font-semibold tracking-tight">{capability.title}</h5>
@@ -201,7 +201,7 @@ function ProductPreview() {
 
   return (
     <div aria-hidden className="relative">
-      <div className="rounded-2xl border border-line bg-white p-5 shadow-[var(--shadow-float)]">
+      <div className="rounded-2xl border border-line card p-5 shadow-[0_30px_80px_-30px_rgba(0,0,0,1)]">
         <div className="flex items-center justify-between border-b border-line pb-3">
           <p className="text-xs font-medium">Classement des candidats</p>
           <span className="text-[10px] text-dim">Développeur Fullstack</span>
@@ -214,7 +214,7 @@ function ProductPreview() {
                 className={`grid size-9 shrink-0 place-items-center rounded-full text-xs font-semibold ${
                   c.score >= 80
                     ? "bg-gradient-to-br from-product to-product-2 text-white"
-                    : "bg-surface-2 text-muted"
+                    : "bg-white/[0.06] text-muted"
                 }`}
               >
                 {c.initial}
@@ -222,12 +222,12 @@ function ProductPreview() {
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xs font-medium">{c.name}</p>
                 <p className="truncate text-[10px] text-dim">{c.role}</p>
-                <div className="mt-1.5 h-1 w-full rounded-full bg-surface-2">
+                <div className="mt-1.5 h-1 w-full rounded-full bg-white/[0.06]">
                   <div
                     className={`h-full rounded-full ${
                       c.score >= 80
                         ? "bg-gradient-to-r from-product to-product-2"
-                        : "bg-ink/20"
+                        : "bg-white/20"
                     }`}
                     style={{ width: `${c.score}%` }}
                   />
@@ -237,7 +237,7 @@ function ProductPreview() {
                 className={`shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold tabular-nums ${
                   c.score >= 80
                     ? "bg-product/10 text-product"
-                    : "bg-surface-2 text-muted"
+                    : "bg-white/[0.06] text-muted"
                 }`}
               >
                 {c.score}
@@ -246,7 +246,7 @@ function ProductPreview() {
           ))}
         </div>
 
-        <div className="mt-5 rounded-xl border border-line bg-surface p-3">
+        <div className="mt-5 rounded-xl border border-line bg-white/[0.03] p-3">
           <p className="text-[10px] font-medium text-dim">
             Recommandation de l&apos;IA
           </p>

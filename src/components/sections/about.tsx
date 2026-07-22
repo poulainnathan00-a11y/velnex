@@ -44,7 +44,7 @@ export function About() {
                 </p>
                 <p>
                   C&apos;est ainsi qu&apos;est né{" "}
-                  <span className="font-medium text-ink">RecrutIA</span>, notre
+                  <span className="font-medium text-white">RecrutIA</span>, notre
                   premier produit, dédié aux recruteurs qui passent des heures à
                   trier des candidatures. D&apos;autres solutions suivront, dans la
                   cybersécurité et l&apos;automatisation.
@@ -68,7 +68,7 @@ export function About() {
               <dl className="mt-6 space-y-6">
                 {FACTS.map((fact) => (
                   <div key={fact.label} className="flex items-start gap-4">
-                    <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-line bg-surface text-ink">
+                    <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-line bg-white/[0.03] text-white">
                       <fact.icon className="size-[18px]" />
                     </span>
                     <div>
@@ -87,7 +87,7 @@ export function About() {
               </p>
               <a
                 href="#contact"
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-ink underline underline-offset-4 decoration-line-strong transition-colors hover:decoration-ink"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white underline underline-offset-4 decoration-line-strong transition-colors hover:decoration-white"
               >
                 Nous écrire
               </a>
