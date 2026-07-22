@@ -192,7 +192,7 @@ export default function RecrutiaPage() {
                 return (
                   <StaggerItem key={capability.title}>
                     <article className="card lift h-full rounded-2xl p-6">
-                      <span className="grid size-10 place-items-center rounded-xl border border-line bg-white/[0.03] text-white">
+                      <span className="grid size-10 place-items-center rounded-xl border border-line bg-black/[0.03] text-ink">
                         <Icon className="size-[18px]" />
                       </span>
                       <h3 className="mt-5 font-semibold tracking-tight">
@@ -252,7 +252,7 @@ export default function RecrutiaPage() {
                     Essayez RecrutIA gratuitement.
                   </span>
                 </h2>
-                <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-white/65">
+                <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-ink/65">
                   Créez un compte et analysez vos premiers CV en quelques
                   minutes. Sans carte bancaire.
                 </p>

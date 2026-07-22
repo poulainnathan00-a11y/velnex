@@ -70,7 +70,7 @@ export function WhyVelnex() {
             {REASONS.map((r) => (
               <StaggerItem key={r.title}>
                 <div className="group relative flex gap-6">
-                  <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-line bg-surface text-white/70 transition-all duration-300 group-hover:border-line-strong group-hover:text-white">
+                  <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-line bg-surface text-ink/70 transition-all duration-300 group-hover:border-line-strong group-hover:text-ink">
                     <r.icon className="size-4.5" />
                   </span>
                   <div className="pt-1.5">

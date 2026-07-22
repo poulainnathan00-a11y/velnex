@@ -49,7 +49,7 @@ export function Expertise() {
           {EXPERTISES.map((item) => (
             <StaggerItem key={item.title}>
               <article className="card lift ring-sheen group h-full rounded-2xl p-8">
-                <span className="grid size-12 place-items-center rounded-xl border border-line bg-white/[0.03] text-white/80 transition-all duration-300 group-hover:border-line-strong group-hover:text-white">
+                <span className="grid size-12 place-items-center rounded-xl border border-line bg-black/[0.03] text-ink/80 transition-all duration-300 group-hover:border-line-strong group-hover:text-ink">
                   <item.icon className="size-5" />
                 </span>
                 <h3 className="mt-6 text-lg font-semibold tracking-tight">

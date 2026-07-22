@@ -26,7 +26,7 @@ export function Screenshot({
   return (
     <figure className="overflow-hidden rounded-2xl card shadow-[0_30px_80px_-30px_rgba(0,0,0,1)]">
       {/* Barre de fenêtre */}
-      <div className="flex items-center gap-1.5 border-b border-line bg-white/[0.03] px-4 py-3">
+      <div className="flex items-center gap-1.5 border-b border-line bg-black/[0.03] px-4 py-3">
         <span className="size-2.5 rounded-full bg-line-strong" />
         <span className="size-2.5 rounded-full bg-line-strong" />
         <span className="size-2.5 rounded-full bg-line-strong" />
@@ -46,7 +46,7 @@ export function Screenshot({
           className="h-auto w-full"
         />
       ) : (
-        <div className="flex aspect-[16/10] flex-col items-center justify-center gap-3 bg-white/[0.03] text-dim">
+        <div className="flex aspect-[16/10] flex-col items-center justify-center gap-3 bg-black/[0.03] text-dim">
           <ImageIcon className="size-7" />
           <p className="px-6 text-center text-xs">{alt}</p>
         </div>

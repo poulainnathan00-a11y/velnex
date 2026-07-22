@@ -7,7 +7,7 @@ export function Cta() {
       {/* Halo qui attire l'œil sur la zone de conversion */}
       <div
         aria-hidden
-        className="glow-orb left-1/2 top-0 size-[560px] -translate-x-1/2 bg-white/[0.05]"
+        className="glow-orb left-1/2 top-0 size-[560px] -translate-x-1/2 bg-[#4f7cff]/[0.07]"
       />
 
       <div className="mx-auto max-w-6xl px-6 lg:px-8">

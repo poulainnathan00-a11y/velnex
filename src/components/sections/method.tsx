@@ -50,7 +50,7 @@ export function Method() {
             {STEPS.map((step, i) => (
               <StaggerItem key={step.title}>
                 <div className="group relative">
-                  <span className="relative z-10 grid size-10 place-items-center rounded-full border border-line bg-surface font-mono text-xs text-white/70 transition-all duration-300 group-hover:border-line-strong group-hover:text-white">
+                  <span className="relative z-10 grid size-10 place-items-center rounded-full border border-line bg-surface font-mono text-xs text-ink/70 transition-all duration-300 group-hover:border-line-strong group-hover:text-ink">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-5 font-semibold tracking-tight">

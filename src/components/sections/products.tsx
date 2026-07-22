@@ -58,7 +58,7 @@ function StatusBadge({ status }: { status: Product["status"] }) {
       ? "border-emerald-200 bg-emerald-50 text-emerald-700"
       : status === "development"
         ? "border-product/25 bg-product/8 text-product"
-        : "border-line bg-white/[0.03] text-muted";
+        : "border-line bg-black/[0.03] text-muted";
 
   return (
     <span
@@ -180,7 +180,7 @@ function CapabilityCard({ capability }: { capability: Capability }) {
   const Icon = ICONS[capability.icon];
   return (
     <article className="card lift h-full rounded-2xl p-6">
-      <span className="grid size-10 place-items-center rounded-xl border border-line bg-white/[0.03] text-white">
+      <span className="grid size-10 place-items-center rounded-xl border border-line bg-black/[0.03] text-ink">
         <Icon className="size-[18px]" />
       </span>
       <h5 className="mt-5 font-semibold tracking-tight">{capability.title}</h5>
@@ -214,7 +214,7 @@ function ProductPreview() {
                 className={`grid size-9 shrink-0 place-items-center rounded-full text-xs font-semibold ${
                   c.score >= 80
                     ? "bg-gradient-to-br from-product to-product-2 text-white"
-                    : "bg-white/[0.06] text-muted"
+                    : "bg-[#4f7cff]/[0.07] text-muted"
                 }`}
               >
                 {c.initial}
@@ -222,7 +222,7 @@ function ProductPreview() {
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xs font-medium">{c.name}</p>
                 <p className="truncate text-[10px] text-dim">{c.role}</p>
-                <div className="mt-1.5 h-1 w-full rounded-full bg-white/[0.06]">
+                <div className="mt-1.5 h-1 w-full rounded-full bg-[#4f7cff]/[0.07]">
                   <div
                     className={`h-full rounded-full ${
                       c.score >= 80
@@ -237,7 +237,7 @@ function ProductPreview() {
                 className={`shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold tabular-nums ${
                   c.score >= 80
                     ? "bg-product/10 text-product"
-                    : "bg-white/[0.06] text-muted"
+                    : "bg-[#4f7cff]/[0.07] text-muted"
                 }`}
               >
                 {c.score}
@@ -246,7 +246,7 @@ function ProductPreview() {
           ))}
         </div>
 
-        <div className="mt-5 rounded-xl border border-line bg-white/[0.03] p-3">
+        <div className="mt-5 rounded-xl border border-line bg-black/[0.03] p-3">
           <p className="text-[10px] font-medium text-dim">
             Recommandation de l&apos;IA
           </p>

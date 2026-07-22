@@ -49,7 +49,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative text-sm text-muted transition-colors duration-300 hover:text-white"
+                className="relative text-sm text-muted transition-colors duration-300 hover:text-ink"
               >
                 {link.label}
               </Link>
@@ -69,7 +69,7 @@ export function Navbar() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={open}
-              className="grid size-10 place-items-center rounded-xl text-muted transition-colors hover:bg-white/5 hover:text-white lg:hidden"
+              className="grid size-10 place-items-center rounded-xl text-muted transition-colors hover:bg-black/5 hover:text-ink lg:hidden"
             >
               {open ? <XIcon className="size-5" /> : <MenuIcon className="size-5" />}
             </button>
@@ -93,7 +93,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/5 hover:text-white"
+                  className="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-black/5 hover:text-ink"
                 >
                   {link.label}
                 </Link>

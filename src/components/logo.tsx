@@ -17,7 +17,7 @@ export function Logo({
         width={64}
         height={64}
         priority
-        className="size-8 rounded-[9px] ring-1 ring-white/10"
+        className="size-8 rounded-[9px] ring-1 ring-black/10"
       />
       <span className="text-[17px] font-semibold tracking-tight">Velnex</span>
     </span>

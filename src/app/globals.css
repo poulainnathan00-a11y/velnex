@@ -2,17 +2,18 @@
 
 /* ============================================================
    Velnex — design system
-   Sombre uniquement. Noir profond, blanc pur, gris élégants.
-   Une seule couleur d'accent, utilisée avec parcimonie.
+   Thème CLAIR professionnel (blanc, encre, gris), style Stripe/Linear.
+   Une seule couleur d'accent, réservée au produit RecrutIA.
    ============================================================ */
 @theme {
-  --color-background: #050505;
-  --color-surface: #0b0b0d;
-  --color-surface-2: #121215;
-  --color-line: #1c1c20;
-  --color-line-strong: #2a2a30;
-  --color-muted: #a1a1aa;
-  --color-dim: #6b6b75;
+  --color-background: #ffffff;
+  --color-surface: #f7f7f8;
+  --color-surface-2: #eeeef1;
+  --color-line: #e7e7ea;
+  --color-line-strong: #d4d4d8;
+  --color-ink: #0a0a0b;
+  --color-muted: #52525b;
+  --color-dim: #8a8a93;
 
   /* Accent produit — réservé à la vitrine RecrutIA */
   --color-product: #4f7cff;
@@ -23,7 +24,11 @@
 
   --animate-float: float 8s ease-in-out infinite;
   --animate-drift: drift 22s ease-in-out infinite;
-  --animate-sheen: sheen 8s linear infinite;
+
+  /* Ombres douces en couches (clé du rendu premium en clair). */
+  --shadow-card: 0 1px 2px rgba(10, 10, 11, 0.04), 0 4px 16px rgba(10, 10, 11, 0.04);
+  --shadow-lift: 0 2px 6px rgba(10, 10, 11, 0.05), 0 18px 44px rgba(10, 10, 11, 0.1);
+  --shadow-float: 0 8px 24px rgba(10, 10, 11, 0.06), 0 30px 70px rgba(10, 10, 11, 0.12);
 }
 
 @keyframes float {
@@ -36,40 +41,33 @@
   50% { transform: translate(3%, -4%) scale(1.06); }
 }
 
-/* Dégradé qui balaie lentement un texte ou une bordure. */
-@keyframes sheen {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
 /* ------------------------------------------------------------ Base */
 html {
   scroll-behavior: smooth;
-  /* Compense la navbar fixe lors des ancres. */
   scroll-padding-top: 6rem;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
   background: var(--color-background);
-  color: #ffffff;
+  color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(10, 10, 11, 0.1);
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-background); }
 ::-webkit-scrollbar-thumb {
-  background: #26262b;
+  background: #d4d4d8;
   border-radius: 999px;
   border: 3px solid var(--color-background);
 }
-::-webkit-scrollbar-thumb:hover { background: #34343b; }
+::-webkit-scrollbar-thumb:hover { background: #b4b4bb; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -82,27 +80,23 @@ body {
 
 /* ------------------------------------------------- Utilitaires maison */
 
-/* Titre en dégradé blanc → gris (signature du thème sombre). */
+/* Titre en dégradé encre → gris (signature du thème clair). */
 .text-gradient {
   background-image: linear-gradient(
     180deg,
-    #ffffff 30%,
-    rgba(255, 255, 255, 0.55) 100%
+    #0a0a0b 35%,
+    rgba(10, 10, 11, 0.5) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Carte premium : verre très léger, liseré fin. */
+/* Carte premium : blanche, liseré fin, ombre douce. */
 .card {
-  background-image: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.035),
-    rgba(255, 255, 255, 0.012)
-  );
+  background: #ffffff;
   border: 1px solid var(--color-line);
-  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-card);
 }
 
 /* Élévation discrète au survol. */
@@ -115,10 +109,10 @@ body {
 .lift:hover {
   transform: translateY(-4px);
   border-color: var(--color-line-strong);
-  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.9);
+  box-shadow: var(--shadow-lift);
 }
 
-/* Bordure lumineuse au survol (effet Linear). */
+/* Liseré lumineux au survol (effet Linear). */
 .ring-sheen {
   position: relative;
 }
@@ -131,7 +125,7 @@ body {
   background: linear-gradient(
     130deg,
     transparent 30%,
-    rgba(255, 255, 255, 0.22),
+    rgba(10, 10, 11, 0.12),
     transparent 70%
   );
   -webkit-mask:
@@ -147,7 +141,7 @@ body {
   opacity: 1;
 }
 
-/* Halo radial diffus. */
+/* Halo radial diffus (léger, coloré). */
 .glow-orb {
   position: absolute;
   border-radius: 9999px;
@@ -156,11 +150,11 @@ body {
   z-index: -1;
 }
 
-/* Grille de fond façon Vercel. */
+/* Grille de fond façon Vercel (lignes sombres discrètes). */
 .grid-bg {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(10, 10, 11, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 10, 11, 0.05) 1px, transparent 1px);
   background-size: 72px 72px;
   -webkit-mask-image: radial-gradient(
     ellipse 70% 60% at 50% 0%,

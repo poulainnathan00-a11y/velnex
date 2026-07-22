@@ -46,12 +46,12 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls={id}
-          className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors duration-300 hover:text-white"
+          className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors duration-300 hover:text-ink"
         >
           <span className="font-medium tracking-tight">{q}</span>
           <span
             className={`grid size-8 shrink-0 place-items-center rounded-full border border-line transition-all duration-300 ${
-              open ? "rotate-45 border-line-strong bg-white/[0.05]" : ""
+              open ? "rotate-45 border-line-strong bg-[#4f7cff]/[0.07]" : ""
             }`}
           >
             <PlusIcon className="size-4" />

@@ -47,7 +47,7 @@ export function Hero() {
         {/* Colonne texte */}
         <div className="text-center lg:text-left">
           <motion.div {...fadeUp(0)}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-3.5 py-1.5 text-xs text-muted backdrop-blur">
+            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-black/[0.03] px-3.5 py-1.5 text-xs text-muted backdrop-blur">
               <SparklesIcon className="size-3.5" />
               Solutions SaaS &amp; IA sur mesure
             </span>

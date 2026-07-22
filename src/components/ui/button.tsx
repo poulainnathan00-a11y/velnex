@@ -5,15 +5,15 @@ type Variant = "primary" | "secondary" | "ghost" | "product";
 type Size = "md" | "lg";
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50";
+  "group relative inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  /* Blanc sur noir : le bouton principal du thème sombre. */
+  /* Encre sur blanc : le bouton principal du thème clair. */
   primary:
-    "bg-white text-background hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-12px_rgba(255,255,255,0.35)]",
+    "bg-ink text-white hover:-translate-y-0.5 hover:bg-ink/90 hover:shadow-[0_14px_38px_-12px_rgba(10,10,11,0.5)]",
   secondary:
-    "card text-white/90 hover:-translate-y-0.5 hover:border-line-strong hover:text-white",
-  ghost: "text-muted hover:text-white",
+    "border border-line bg-white text-ink shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:border-line-strong hover:shadow-[var(--shadow-lift)]",
+  ghost: "text-muted hover:text-ink",
   /* Réservé à la vitrine RecrutIA : seule touche de couleur du site. */
   product:
     "bg-product text-white hover:-translate-y-0.5 hover:shadow-[0_14px_44px_-12px_var(--color-product)]",

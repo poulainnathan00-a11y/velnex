@@ -1,6 +1,6 @@
 /**
- * Fond d'ambiance du hero : grille façon Vercel, halos radiaux qui dérivent
- * et fines particules. Purement décoratif, sans coût JavaScript.
+ * Fond d'ambiance du hero : grille façon Vercel, halos radiaux colorés très
+ * légers et fines particules. Purement décoratif, sans coût JavaScript.
  */
 
 /* Positions figées : un rendu identique serveur/client, sans hydratation. */
@@ -21,22 +21,21 @@ export function AmbientBackground() {
       {/* Grille */}
       <div className="absolute inset-0 grid-bg" />
 
-      {/* Halos lumineux qui dérivent lentement */}
+      {/* Halos lumineux colorés qui dérivent lentement */}
       <div
-        className="glow-orb -top-40 left-1/2 size-[680px] -translate-x-1/2 bg-white/[0.05]"
+        className="glow-orb -top-40 left-1/2 size-[680px] -translate-x-1/2 bg-[#4f7cff]/[0.08]"
         style={{ animation: "drift 22s ease-in-out infinite" }}
       />
       <div
-        className="glow-orb right-[8%] top-24 size-[420px] bg-[#4f7cff]/[0.07]"
+        className="glow-orb right-[6%] top-24 size-[420px] bg-[#7c4dff]/[0.06]"
         style={{ animation: "drift 28s ease-in-out infinite reverse" }}
       />
-      <div className="glow-orb -bottom-32 left-[10%] size-[380px] bg-white/[0.03]" />
 
       {/* Particules */}
       {PARTICLES.map((p, i) => (
         <span
           key={i}
-          className="absolute rounded-full bg-white/25"
+          className="absolute rounded-full bg-ink/20"
           style={{
             left: p.left,
             top: p.top,
@@ -48,7 +47,7 @@ export function AmbientBackground() {
         />
       ))}
 
-      {/* Fondu vers le noir en bas, pour enchaîner sans couture */}
+      {/* Fondu vers le fond en bas, pour enchaîner sans couture */}
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
     </div>
   );

@@ -40,7 +40,7 @@ export function ContactForm() {
   }
 
   const field =
-    "h-11 w-full rounded-xl border border-line bg-white/[0.02] px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-dim focus:border-line-strong focus:bg-white/[0.04] focus:ring-4 focus:ring-white/5";
+    "h-11 w-full rounded-xl border border-line bg-black/[0.02] px-4 text-sm text-ink outline-none transition-all duration-300 placeholder:text-dim focus:border-line-strong focus:bg-black/[0.03] focus:ring-4 focus:ring-white/5";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 text-left">
@@ -98,7 +98,7 @@ export function ContactForm() {
           required
           rows={5}
           placeholder="Dites-nous en quelques mots ce dont vous avez besoin…"
-          className="w-full resize-y rounded-xl border border-line bg-white/[0.02] px-4 py-3 text-sm text-white outline-none transition-all duration-300 placeholder:text-dim focus:border-line-strong focus:bg-white/[0.04] focus:ring-4 focus:ring-white/5"
+          className="w-full resize-y rounded-xl border border-line bg-black/[0.02] px-4 py-3 text-sm text-ink outline-none transition-all duration-300 placeholder:text-dim focus:border-line-strong focus:bg-black/[0.03] focus:ring-4 focus:ring-white/5"
         />
       </div>
 
@@ -125,7 +125,7 @@ export function ContactForm() {
           : "L'envoi ouvre votre logiciel de messagerie avec le message pré-rempli. Vous pouvez aussi écrire directement à "}
         <a
           href={`mailto:${SITE.email}`}
-          className="text-white underline underline-offset-4 decoration-line-strong hover:decoration-white"
+          className="text-ink underline underline-offset-4 decoration-line-strong hover:decoration-white"
         >
           {SITE.email}
         </a>

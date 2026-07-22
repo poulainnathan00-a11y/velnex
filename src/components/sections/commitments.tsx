@@ -57,7 +57,7 @@ export function Commitments() {
           {COMMITMENTS.map((c) => (
             <StaggerItem key={c.title}>
               <article className="card lift ring-sheen h-full rounded-2xl p-6">
-                <span className="grid size-8 place-items-center rounded-lg border border-line bg-white/[0.03] text-white/80">
+                <span className="grid size-8 place-items-center rounded-lg border border-line bg-black/[0.03] text-ink/80">
                   <CheckIcon className="size-4" />
                 </span>
                 <h3 className="mt-5 font-semibold tracking-tight">{c.title}</h3>

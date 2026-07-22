@@ -49,7 +49,7 @@ export function Footer() {
             </p>
             <a
               href={`mailto:${SITE.email}`}
-              className="mt-4 inline-block text-sm text-muted transition-colors hover:text-white"
+              className="mt-4 inline-block text-sm text-muted transition-colors hover:text-ink"
             >
               {SITE.email}
             </a>
@@ -66,7 +66,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted transition-colors hover:text-white"
+                      className="text-sm text-muted transition-colors hover:text-ink"
                     >
                       {link.label}
                     </Link>
@@ -84,7 +84,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted transition-colors hover:text-white"
+                      className="text-sm text-muted transition-colors hover:text-ink"
                     >
                       {link.label}
                     </Link>
@@ -128,7 +128,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className={`${classes} hover:border-line-strong hover:text-white`}
+                  className={`${classes} hover:border-line-strong hover:text-ink`}
                 >
                   <Icon className="size-4" />
                 </a>
