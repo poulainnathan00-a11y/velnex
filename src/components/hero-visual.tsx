@@ -1,112 +1,147 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ActivityIcon, SparklesIcon, TrendingUpIcon } from "lucide-react";
+import { CheckIcon, SparklesIcon, TrophyIcon } from "lucide-react";
 
 const EASE = [0.22, 0.61, 0.36, 1] as const;
 
-const BARS = [34, 52, 41, 68, 58, 84, 72, 91];
+const CANDIDATES = [
+  { initial: "T", name: "Thomas M.", role: "6 ans · React, Node", score: 92, top: true },
+  { initial: "L", name: "Léa D.", role: "3 ans · React, UX", score: 74, top: false },
+  { initial: "K", name: "Karim B.", role: "1 an · JavaScript", score: 51, top: false },
+];
 
 /**
- * Illustration du hero : tableau de bord SaaS, entouré de deux cartes
- * flottantes. Thème clair, purement décoratif (aria-hidden).
+ * Illustration du hero : un aperçu direct de RecrutIA (classement de
+ * candidats), pour montrer le produit phare dès l'arrivée. Thème clair,
+ * décoratif (aria-hidden). La couleur d'accent est celle du produit.
  */
 export function HeroVisual() {
   return (
     <div aria-hidden className="relative mx-auto w-full max-w-[540px]">
       {/* Lueur colorée derrière la carte */}
-      <div className="glow-orb inset-x-8 top-6 h-64 bg-[#4f7cff]/10" />
+      <div className="glow-orb inset-x-8 top-6 h-64 bg-[#4f7cff]/12" />
 
-      {/* Carte principale */}
-      <div className="relative rounded-2xl border border-line bg-white p-5 shadow-[var(--shadow-float)]">
+      {/* Fenêtre produit */}
+      <div className="relative rounded-2xl border border-line bg-white shadow-[var(--shadow-float)]">
         {/* Barre de fenêtre */}
-        <div className="flex items-center gap-1.5 border-b border-line pb-4">
+        <div className="flex items-center gap-1.5 border-b border-line px-5 py-3.5">
           <span className="size-2.5 rounded-full bg-surface-2" />
           <span className="size-2.5 rounded-full bg-surface-2" />
           <span className="size-2.5 rounded-full bg-surface-2" />
-          <span className="ml-3 font-mono text-[11px] text-dim">
-            velnex · tableau de bord
+          <span className="ml-3 flex items-center gap-1.5 font-mono text-[11px] text-dim">
+            <span className="grid size-4 place-items-center rounded bg-gradient-to-br from-product to-product-2 text-[8px] font-bold text-white">
+              R
+            </span>
+            recrutia.pro
           </span>
         </div>
 
-        {/* Indicateurs */}
-        <div className="mt-4 grid grid-cols-3 gap-2.5">
-          {[
-            { label: "Traitées", value: "1 284" },
-            { label: "Temps gagné", value: "72 %" },
-            { label: "Précision", value: "96 %" },
-          ].map((kpi, i) => (
-            <motion.div
-              key={kpi.label}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 + i * 0.1, ease: EASE }}
-              className="rounded-xl border border-line bg-surface p-3"
-            >
-              <p className="text-[10px] text-dim">{kpi.label}</p>
-              <p className="mt-1 text-base font-semibold tracking-tight">
-                {kpi.value}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Graphe */}
-        <div className="mt-3 rounded-xl border border-line bg-surface p-4">
+        <div className="p-5">
+          {/* En-tête : offre + compteur */}
           <div className="flex items-center justify-between">
-            <p className="text-[11px] text-dim">Automatisation</p>
-            <span className="flex items-center gap-1 text-[11px] font-medium text-emerald-600">
-              <TrendingUpIcon className="size-3" />
-              +24 %
+            <div>
+              <p className="text-sm font-semibold tracking-tight">
+                Développeur Fullstack
+              </p>
+              <p className="text-[11px] text-dim">127 candidatures analysées</p>
+            </div>
+            <span className="inline-flex items-center gap-1 rounded-full border border-product/25 bg-product/8 px-2.5 py-1 text-[11px] font-medium text-product">
+              <SparklesIcon className="size-3" />
+              Classé par l&apos;IA
             </span>
           </div>
-          <div className="mt-3 flex h-24 items-end gap-1.5">
-            {BARS.map((h, i) => (
-              <motion.span
-                key={i}
-                initial={{ height: 0 }}
-                animate={{ height: `${h}%` }}
-                transition={{ duration: 0.9, delay: 0.8 + i * 0.06, ease: EASE }}
-                className="flex-1 rounded-t-md bg-gradient-to-t from-ink/15 to-ink/70"
-              />
+
+          {/* Classement des candidats */}
+          <div className="mt-4 space-y-2.5">
+            {CANDIDATES.map((c, i) => (
+              <motion.div
+                key={c.name}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.6 + i * 0.14, ease: EASE }}
+                className={`flex items-center gap-3 rounded-xl border p-3 ${
+                  c.top
+                    ? "border-product/30 bg-product/[0.04]"
+                    : "border-line bg-surface"
+                }`}
+              >
+                <span
+                  className={`grid size-9 shrink-0 place-items-center rounded-full text-xs font-semibold ${
+                    c.top
+                      ? "bg-gradient-to-br from-product to-product-2 text-white"
+                      : "bg-surface-2 text-muted"
+                  }`}
+                >
+                  {c.initial}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="flex items-center gap-1.5 truncate text-[13px] font-medium">
+                    {c.name}
+                    {c.top && <TrophyIcon className="size-3 text-product" />}
+                  </p>
+                  <p className="truncate text-[11px] text-dim">{c.role}</p>
+                </div>
+                <span
+                  className={`shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold tabular-nums ${
+                    c.score >= 80
+                      ? "bg-product/10 text-product"
+                      : c.score >= 60
+                        ? "bg-amber-100 text-amber-700"
+                        : "bg-surface-2 text-muted"
+                  }`}
+                >
+                  {c.score}
+                </span>
+              </motion.div>
             ))}
           </div>
+
+          {/* Recommandation IA */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.1, ease: EASE }}
+            className="mt-4 flex items-start gap-2.5 rounded-xl border border-line bg-surface p-3"
+          >
+            <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-product/12 text-product">
+              <CheckIcon className="size-3" />
+            </span>
+            <p className="text-[11px] leading-relaxed text-muted">
+              <span className="font-medium text-ink">Recommandation :</span>{" "}
+              Thomas M. correspond au poste sur l&apos;expérience et la stack. À
+              convoquer en priorité.
+            </p>
+          </motion.div>
         </div>
       </div>
 
-      {/* Carte flottante — analyse IA */}
+      {/* Carte flottante — score expliqué */}
       <motion.div
         initial={{ opacity: 0, x: -24 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1, ease: EASE }}
-        className="absolute -left-6 top-[42%] hidden sm:block"
+        transition={{ duration: 0.8, delay: 1.05, ease: EASE }}
+        className="absolute -left-6 top-[38%] hidden sm:block"
       >
         <div
-          className="w-44 rounded-xl border border-line bg-white p-3.5 shadow-[var(--shadow-float)]"
+          className="w-40 rounded-xl border border-line bg-white p-3.5 shadow-[var(--shadow-float)]"
           style={{ animation: "float 7s ease-in-out infinite" }}
         >
-          <div className="flex items-center gap-2">
-            <span className="grid size-7 place-items-center rounded-lg bg-surface-2 text-ink">
-              <SparklesIcon className="size-3.5" />
-            </span>
-            <p className="text-[11px] font-medium">Analyse IA</p>
-          </div>
-          <div className="mt-3 space-y-1.5">
-            <div className="h-1.5 w-full rounded-full bg-surface-2">
-              <div className="h-full w-[86%] rounded-full bg-ink/75" />
-            </div>
-            <div className="h-1.5 w-full rounded-full bg-surface-2">
-              <div className="h-full w-[58%] rounded-full bg-ink/35" />
-            </div>
+          <p className="text-[10px] text-dim">Score de compatibilité</p>
+          <p className="mt-1 text-2xl font-semibold tracking-tight text-product">
+            92<span className="text-sm text-dim">/100</span>
+          </p>
+          <div className="mt-2 h-1.5 w-full rounded-full bg-surface-2">
+            <div className="h-full w-[92%] rounded-full bg-gradient-to-r from-product to-product-2" />
           </div>
         </div>
       </motion.div>
 
-      {/* Carte flottante — statut */}
+      {/* Carte flottante — gain de temps */}
       <motion.div
         initial={{ opacity: 0, x: 24 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1.15, ease: EASE }}
+        transition={{ duration: 0.8, delay: 1.2, ease: EASE }}
         className="absolute -right-4 -top-6 hidden sm:block"
       >
         <div
@@ -114,11 +149,11 @@ export function HeroVisual() {
           style={{ animation: "float 9s ease-in-out infinite reverse" }}
         >
           <span className="grid size-7 place-items-center rounded-lg bg-emerald-50 text-emerald-600">
-            <ActivityIcon className="size-3.5" />
+            <SparklesIcon className="size-3.5" />
           </span>
           <div>
-            <p className="text-[11px] font-medium leading-none">Automatisé</p>
-            <p className="mt-1 text-[10px] leading-none text-dim">temps réel</p>
+            <p className="text-[11px] font-medium leading-none">~30 s</p>
+            <p className="mt-1 text-[10px] leading-none text-dim">par CV</p>
           </div>
         </div>
       </motion.div>
