@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navbar";
 import { About } from "@/components/sections/about";
 import { Commitments } from "@/components/sections/commitments";
 import { Cta } from "@/components/sections/cta";
+import { Demo } from "@/components/sections/demo";
 import { Expertise } from "@/components/sections/expertise";
 import { Faq } from "@/components/sections/faq";
 import { Hero } from "@/components/sections/hero";
@@ -18,6 +19,7 @@ export default function Home() {
       <main className="flex-1 overflow-x-clip">
         <Hero />
         <Stats />
+        <Demo />
         <Expertise />
         <Products />
         <WhyVelnex />

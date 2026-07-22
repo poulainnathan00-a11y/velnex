@@ -78,6 +78,26 @@ export function Hero() {
               Voir RecrutIA
             </ButtonLink>
           </motion.div>
+
+          {/* Mise en avant du produit phare, dès le hero */}
+          <motion.a
+            {...fadeUp(0.65)}
+            href="/recrutia"
+            className="group mt-8 inline-flex items-center gap-3 rounded-2xl border border-line bg-white p-2 pr-4 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-[var(--shadow-lift)]"
+          >
+            <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-product to-product-2 text-sm font-bold text-white">
+              R
+            </span>
+            <span className="text-left">
+              <span className="block text-[13px] font-semibold leading-tight">
+                Notre produit phare : RecrutIA
+              </span>
+              <span className="block text-xs text-muted">
+                Le recrutement assisté par IA
+              </span>
+            </span>
+            <ArrowRightIcon className="size-4 text-dim transition-transform duration-300 group-hover:translate-x-1 group-hover:text-ink" />
+          </motion.a>
         </div>
 
         {/* Colonne illustration */}
