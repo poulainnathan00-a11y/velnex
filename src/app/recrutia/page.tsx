@@ -11,7 +11,12 @@ import {
 
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
-import { Screenshot } from "@/components/screenshot";
+import {
+  ComparatorMockup,
+  DashboardMockup,
+  PipelineMockup,
+  ScoringMockup,
+} from "@/components/recrutia-mockups";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { PRODUCTS, STATUS_LABEL } from "@/data/products";
@@ -40,36 +45,28 @@ export const metadata: Metadata = {
   },
 };
 
-/** Captures d'écran réelles du produit (fichiers dans public/screenshots/). */
-const SHOTS = [
+/** Aperçus du produit (maquettes reproduites, alternées gauche/droite). */
+const SHOWCASE = [
   {
-    src: "/screenshots/dashboard.png",
-    alt: "Tableau de bord RecrutIA : statistiques de recrutement, offres actives et meilleurs candidats",
-    caption: "recrutia.pro · Tableau de bord",
+    Mockup: DashboardMockup,
     title: "Un tableau de bord clair",
     description:
       "CV importés, candidats analysés, profils compatibles et score moyen — l'activité de recrutement en un coup d'œil.",
   },
   {
-    src: "/screenshots/analyse-candidat.png",
-    alt: "Fiche candidat RecrutIA : score sur 100, forces, faiblesses et justification critère par critère",
-    caption: "recrutia.pro · Fiche candidat",
+    Mockup: ScoringMockup,
     title: "Un score que l'on peut défendre",
     description:
-      "Chaque note est décomposée critère par critère et justifiée, avec les forces, les faiblesses et un indice de confiance.",
+      "Chaque note est décomposée critère par critère et justifiée, avec les forces et les points d'attention de chaque profil.",
   },
   {
-    src: "/screenshots/pipeline.png",
-    alt: "Pipeline de recrutement RecrutIA : colonnes de suivi des candidats par étape",
-    caption: "recrutia.pro · Pipeline",
+    Mockup: PipelineMockup,
     title: "Le suivi des candidatures",
     description:
       "Un pipeline visuel pour faire avancer chaque candidat, de la réception de son CV jusqu'à l'embauche.",
   },
   {
-    src: "/screenshots/comparateur.png",
-    alt: "Comparateur de candidats RecrutIA : deux profils côte à côte avec verdict de l'IA",
-    caption: "recrutia.pro · Comparateur",
+    Mockup: ComparatorMockup,
     title: "Deux profils, face à face",
     description:
       "L'IA explique qui prend l'avantage et pourquoi l'autre candidat reste intéressant. La décision reste humaine.",
@@ -145,29 +142,28 @@ export default function RecrutiaPage() {
           </Reveal>
         </section>
 
-        {/* ------------------------------------------------- Captures */}
+        {/* ------------------------------------------------- Aperçus produit */}
         <section className="px-6 py-20 sm:py-24 lg:px-8">
-          <div className="mx-auto max-w-5xl space-y-24">
-            {SHOTS.map((shot, index) => (
-              <Reveal key={shot.src}>
-                <div className="mx-auto max-w-2xl text-center">
-                  <span className="font-mono text-xs font-medium text-product">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] sm:text-3xl">
-                    {shot.title}
-                  </h2>
-                  <p className="mt-3 leading-relaxed text-muted">
-                    {shot.description}
-                  </p>
-                </div>
-                <div className="mt-10">
-                  <Screenshot
-                    src={shot.src}
-                    alt={shot.alt}
-                    caption={shot.caption}
-                    priority={index === 0}
-                  />
+          <div className="mx-auto max-w-6xl space-y-20 sm:space-y-28">
+            {SHOWCASE.map(({ Mockup, title, description }, index) => (
+              <Reveal key={title}>
+                <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+                  {/* Texte — alterne le côté à chaque bloc */}
+                  <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                    <span className="font-mono text-xs font-medium text-product">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] sm:text-3xl">
+                      {title}
+                    </h2>
+                    <p className="mt-4 text-[15px] leading-relaxed text-muted">
+                      {description}
+                    </p>
+                  </div>
+                  {/* Maquette */}
+                  <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                    <Mockup />
+                  </div>
                 </div>
               </Reveal>
             ))}
